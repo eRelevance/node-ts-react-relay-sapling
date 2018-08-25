@@ -1,17 +1,17 @@
 {
-  "author": "Michael D. Norman",
+  "author": "eRelevance",
   "name": "CHANGEME",
   "description": "",
   "private": true,
   "license": "commercial",
   "version": "0.0.0",
-  "homepage": "https://github.com/mdnorman/CHANGEME/wiki/Home",
+  "homepage": "https://github.com/eRelevance/CHANGEME/wiki/Home",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mdnorman/CHANGEME"
+    "url": "https://github.com/eRelevance/CHANGEME"
   },
   "bugs": {
-    "url": "https://github.com/mdnorman/CHANGEME/issues"
+    "url": "https://github.com/eRelevance/CHANGEME/issues"
   },
   "scripts": {
     "build": "webpack --mode production",
