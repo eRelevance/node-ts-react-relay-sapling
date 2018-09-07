@@ -22,7 +22,7 @@ const webpackConfig = (env, argv) => {
   }
 
   return {
-    entry: './src/index.tsx',
+    entry: ['babel-polyfill', './src/index.tsx'],
     output: {
       filename,
       path: path.resolve(__dirname, './dist'),
@@ -56,7 +56,11 @@ const webpackConfig = (env, argv) => {
 
     module: {
       rules: [
-        { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: [{ loader: 'babel-loader' }, { loader: 'awesome-typescript-loader' }],
+        },
         { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
         {
           test: /\.css$/,
