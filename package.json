@@ -25,7 +25,7 @@
     "lint": "tslint -c tslint.json --project tsconfig.json && tslint -c tslint.json --project spec/tsconfig.json",
     "pretty": "pretty-quick --stage",
     "server:development": "node dev-server.js",
-    "fetch-schema": "get-graphql-schema http://localhost:3000/graphql > ./schema.graphql",
+    "fetch-schema": "get-graphql-schema ${GRAPHQL_URL:-http://localhost:${GRAPHQL_PORT:-3000}/graphql} > ./schema.graphql",
     "relay": "relay-compiler --src ./src --schema ./schema.graphql --extensions js jsx ts tsx",
     "relay:watch": "npm run relay -- --watch"
   },
