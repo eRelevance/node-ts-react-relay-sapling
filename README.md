@@ -32,6 +32,27 @@ The GraphQL server URL can be wholly changed by setting the environment variable
 
 In addition, the `fetch-schema` command will use these environment variables if set
 
+### AWS
+
+1.  Install AWS CLI for your computer
+2.  Setup AWS CLI with your credentials
+3.  Add a configuration for `serverless` in your AWS config files
+
+### Serverless
+
+This project uses [Serverless] to deploy. Install `serverless` as a global:
+
+```
+npm install -g serverless
+```
+
+Change the bucket to be used for logs in the `custom.logs.bucket` property in `serverless.yml`.
+
+### Domain Name
+
+1.  Register a domain name in AWS Route53
+2.  Change the base `custom.baseDomainName` property in `serverless.yml` to the zone name, eg `whatever.com`
+
 ## Development
 
 ### Updating `schema.graphql`
@@ -117,6 +138,30 @@ npm run build:development
 ```
 npm run build
 ```
+
+## Deploy
+
+> NOTE: AWS Certificate validation requires a manual step during the first deployment.
+>
+> When the following is displayed, go to the AWS Certificate Manager console for the new domain name and create the record in Route 53:
+>
+> `CloudFormation - CREATE_IN_PROGRESS - AWS::CertificateManager::Certificate - WebAppCertificate`
+
+### Test
+
+```
+npm run deploy:test
+```
+
+### Production
+
+```
+npm run deploy
+```
+
+### Troubleshooting
+
+If there are errors when deploying, check the Cloudformation logs for the stack.
 
 [http://localhost:3000/graphql]: http://localhost:3000/graphql
 [http://localhost:5000/]: http://localhost:5000/
