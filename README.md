@@ -51,7 +51,7 @@ Change the bucket to be used for logs in the `custom.logs.bucket` property in `s
 ### Domain Name
 
 1.  Register a domain name in AWS Route53
-2.  Change the base `custom.baseDomainName` property in `serverless.yml` to the zone name, eg `whatever.com`
+2.  Change the `custom.hostedZone` property in `serverless.yml` to the zone name, eg `whatever.com`
 
 ## Development
 

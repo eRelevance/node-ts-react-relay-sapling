@@ -31,7 +31,8 @@ custom:
   domainNameStage:
     test: test.${self:custom.baseDomainName}
     prod: www.${self:custom.baseDomainName}
-  baseDomainName: CHANGEME.com
+  baseDomainName: ${self:custom.hostedZone}
+  hostedZone: CHANGEME.com
   logs:
     bucket: CHANGEME
     path: websites/${self:service.name}/${self:custom.stage}/cloudfront
@@ -137,7 +138,7 @@ resources:
     WebAppDomainName:
       Type: AWS::Route53::RecordSetGroup
       Properties:
-        HostedZoneName: ${self:custom.baseDomainName}.
+        HostedZoneName: ${self:custom.hostedZone}.
         RecordSets:
           - Name: ${self:custom.domainName}.
             Type: CNAME
