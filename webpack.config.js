@@ -1,12 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin');
 const webpack = require('webpack');
 
-const webpackConfig = (env, argv) => {
+const webpackConfig = env => {
   const { mode } = env;
   const production = mode === 'production';
   const development = !production;
+  const analyze = false;
   const filename = production ? '[name].[chunkhash].bundle.js' : '[name].[hash].bundle.js';
 
   const plugins = [
@@ -21,8 +23,17 @@ const webpackConfig = (env, argv) => {
     plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
+  if (analyze) {
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        reportFilename: 'bundle_report.html',
+      }),
+    );
+  }
+
   return {
-    entry: ['babel-polyfill', './src/index.tsx'],
+    entry: ['@babel/polyfill', './src/index.tsx'],
     output: {
       filename,
       path: path.resolve(__dirname, './dist'),
